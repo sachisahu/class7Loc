@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>My Location</title>
+</head>
+<body>
+
+    <p id="loc">d</p>
+
+    <button onclick="mylocation()">OK</button>
+    <button onclick="openMap()">Open Map</button>
+    
+</body>
+    <script>
+
+        const x = document.getElementById("loc");
+        var url;
+        function mylocation(){
+            if(navigator.geolocation){
+                x.innerHTML =  navigator.geolocation.getCurrentPosition(showPosition);
+            } else{
+                x.innerHTML = "not supported"
+            }
+
+        }
+
+        function showPosition(position){
+            
+            url = "https://maps.google.com/?q=" +position.coords.latitude + ","+position.coords.longitude;
+
+            x.innerHTML = url;
+            
+        }
+
+        function openMap(){
+            window.open(url,"map");
+        }
+
+
+    </script>
+</html>
